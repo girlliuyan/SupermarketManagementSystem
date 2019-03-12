@@ -14,5 +14,3 @@
     // 配置邮箱和账号
     git config --global user.email "you@example.com"
     git config --global user.name "Your Name"
-
-https://github.com/girlliuyan/SupermarketManagementSystem.git
