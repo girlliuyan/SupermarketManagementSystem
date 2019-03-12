@@ -1,0 +1,35 @@
+1下载axios模块
+    cnpm i axios -S
+
+2 引入axios
+    import axios from 'axios';
+
+
+3 发送get请求
+    axios.get(url, {
+        params: {
+            key: value  // 参数
+        }
+    })
+    .then(response => {
+        // response.data  就是数据
+    })
+    .catch(err => {
+        // err就是错误信息
+    })
+
+
+4 axios发送post方式的请求
+    // post需要对参数处理 使用qs模块转化 否则后端接收不到
+    cnpm i qs -S
+    import qs from 'qs';
+
+    axios.post( url, qs.strinify({
+        key: value  // 参数
+    }) )
+    .then(response => {
+        // response.data  就是数据
+    })
+    .catch(err => {
+        // err就是错误信息
+    })

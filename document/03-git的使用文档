@@ -1,0 +1,18 @@
+1 git常用命令
+    git clone 仓库地址          // 第一次从服务器下载代码和文档
+    git status                 // 查看仓库的状态
+
+    git add .                  // 纳入版本控制
+    git commit -m"简单描述"     // 提交到本地仓库
+
+    git push 仓库地址/ master           // 推送到远程服务器仓库
+    git push origin master  (简写)
+
+    git pull 仓库地址           // 第二次以后 从服务器拉取代码
+
+
+    // 配置邮箱和账号
+    git config --global user.email "you@example.com"
+    git config --global user.name "Your Name"
+
+https://github.com/girlliuyan/SupermarketManagementSystem.git

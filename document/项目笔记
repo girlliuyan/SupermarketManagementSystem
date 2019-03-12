@@ -1,0 +1,330 @@
+项目目标：
+    1）熟练掌握 vue+elementui 组件化的开发方式（*****）
+    2）熟练掌握 axios 进行前后端数据交互（*****）
+    3）熟悉 后端的交互（crud）
+    4）了解整个系统的前后端运行原理
+DAY01:
+    A 你负责vue+elementui技术体系的项目
+        1） 装环境
+            a) 工具类
+                vscode
+                浏览器： chrome 火狐
+
+            b) 软件类
+                node：   10以后的版本 （自带npm ）
+                安装cnpm
+
+        2） 安装vue-cli脚手架
+            cnpm i -g @vue/cli
+
+        
+        3) 创建项目
+            vue create 项目名     // 自动安装node_modules
+
+        4） 启动项目
+            npm run serve
+
+
+    B 如果已经有项目的工程目录模板
+        1) cd 进入项目目录  安装所有依赖 
+            cnpm i
+
+        2) 启动项目
+            npm run serve
+            
+
+    C 项目目录划分 （主要开发目录是src）
+        main.js  // 入口文件 需要在这个项目引入App.vue 和 路由 挂载dom渲染
+                 // 如果需要全局引入的 整个项目都能使用的资源 那么在这个文件引入
+
+        app.vue  // 顶级组件 要有路由出口（主要是一级路由）
+
+        router.js // 整个项目所有的路由 主要是定义路径path 和 组件component的一一对应关系
+
+        assets:    // 所有静态资源 css fonts js img
+        components: // 公用的小组件
+        view:       // 页面级别的组件
+
+    D 项目的路由分配
+        一个路径对应一个页面级别的组件
+    E 项目集成element-ui
+        a) 安装依赖
+           cnpm i element-ui -S
+
+        b) 在入口文件 main.js 引入
+            import ElementUI from 'element-ui';  // js组件
+            import 'element-ui/lib/theme-chalk/index.css'; // 样式
+
+        c) 在main.js中使用
+            Vue.use(ElementUI);
+
+    F 项目集成iconfont图标
+        1） 找到官网 搜索你想要的图标 下载代码
+ 
+        2） 复制字体文件到fonts文件夹 (5个) 复制css文件 到css文件夹 
+            说明：需要修改css文件中引用字体文件的路径
+
+        3） 在项目入口文件 main.js 引入 iconfont.css
+	
+	G 登录组件实现
+        1）找到官网 找到表单组件
+        2）复制看效果（一定要先复制全 =》template中内容 和 script中内容 ）
+        3）修改
+
+        注意：
+    H 表单验证
+    扩展内容：
+        ui框架：其实就是各个公司开发过程中比较经常用的 组件库。
+        常见ui框架：
+            vue:  pc端： element-ui   iview
+                  移动端：  mintui
+
+            reat:  antdesign  （一系列）
+
+            其他：  
+                mui 
+                妹子ui
+                easyui
+               
+
+DAY02:
+    1) 组件使用强化。
+        a) 找到官网类似功能组件
+        b) 复制粘贴 （两个部分 template 中的 还有 script中的）
+        c) 修改（删除没有用的）
+
+    2）表单验证强化
+        a) 内置的验证
+            验证字段: [
+                { required: true, message: '提示信息',  trigger: '触发方式' },
+                { required: true, min: 3, max: 5, message: '提示信息',  trigger: '触发方式' },
+            ]
+
+        b) 自定义验证
+            验证字段: [
+                { required: true, validator: 函数名, trigger: '触发方式'  }
+            ]
+
+            // 实现自定义验证函数
+            const 函数名 = (rule, value, callback) => {
+                // value就是用户输入的值
+                if (value === '') {
+                    callback(new Error('非空提示'))
+                } else if (value.length < 3 || value.length > 5) {
+                    callback(new Error('长度错误提示'))
+                } else {
+                    callback(); // 成功的回调
+                }
+            }
+
+    3）导航组件实现（双重循环）
+    4）头部组件实现
+    5）尾部组件实现
+    6) 添加账号组件实现
+    7) 账号列表组件实现
+
+DAY03:
+    A 添加账号功能实现
+        1) 前端- 用户填写表单 点击添加 收集数据 通过axios 发送给后端
+        2）后端- 接收请求，接收数据，把数据存入数据库 根据操作结果判断
+            成功： 返回给前端成功的信息
+            失败： 返回给前端失败的信息
+        3）前端- 接收后端返回的信息，判断
+            成功： 弹成功提示 跳到账号管理列表
+            失败： 弹失败提示
+
+    B 账号列表功能实现
+        1) 前端- 跳转到账号管理页面 自动触发生命周期钩子created 在这个钩子函数里面
+                发送ajax 请求所有账号数据
+
+        2）后端- 接收请求，去数据库查询所有账号数据 返回给前端
+
+        3) 前端- 接收后端返回的数据 赋值给accountTableData 渲染表格
+
+    C 删除功能实现
+        1） 前端- 点击删除按钮，触发函数，传入id 发送id给后端
+        2） 后端- 接收请求，接收id，根据id删除对应数据，根据删除结果判断
+            成功：返回给前端成功的信息
+            失败：返回给前端失败的信息
+        3） 前端- 接收后端返回的信息，判断
+            成功： 弹删除成功提示 刷新列表（重新请求一次列表数据）
+            失败： 弹失败提示
+
+    D 修改功能的实现
+        a) 数据回显
+            1）前端- 点击编辑，触发函数，传入id，顺便弹出模态框，在函数里面发送请求 把id发给后端
+            2) 后端- 接收请求，接收id，根据id查询出这一条数据，把这一条返回给前端
+            3) 前端- 接收数据，一一对应回填表单
+
+        b) 保存修改后的新数据
+            1）前端- 点击确认修改，把新数据和原来的id一起发送给后端
+            2）后端- 接收原来的id和新数据，构造sql，执行修改，根据修改结果判断
+                成功：返回给前端成功的信息
+                失败：返回给前端失败的信息
+
+            3） 前端- 接收后端返回的信息，判断
+                成功： 弹修改成功提示 刷新列表（重新请求一次列表数据）
+                失败： 弹失败提示
+
+    补充：es6模块的导入和导出
+        导出： export funtion a () {}
+               export function b () {}
+
+        导入： import { a, b } from './文件的相对路径';
+
+
+        导出： export default {}
+        导入:  import 变量 from './文件的相对路径'
+
+DAY04：
+    A 取消选择
+        1）前端- 给取消选择绑定事件
+        2) 前端- 在取消选择的函数中 选中整个表格 执行取消选择方法
+
+    B 批量删除
+        1) 前端- 给整个表单绑定选中状态改变事件，在这个事件中，收集被选中的数据id，保存起来
+        2）前端- 点击批量删除按钮，判断 
+            如果没有有选中：（selectedId数组中有id） 弹出请选择以后再操作的提示 直接return
+            如果有选中：直接发送axios，把选中的id数组发给后端
+        3）后端- 接收请求，接收id数组，使用in字句批量删除数据，根据删除结果判断
+            成功：返回成功信息
+            失败：返回失败信息
+        4）前端：接收后端返回数据，判断：
+            成功：弹成功提示 刷列表数据
+            失败：弹失败提示 
+
+    C 分页功能实现
+        1）前端- 封装一个分页请求数据的函数 getAccountListByPage
+                 函数里面需要把每页条数 pageSize 和 当前页 currentPage 发送给后端
+
+        2) 前端- 在每页多少条变化 和 当前页变化的两个函数里面 
+           收集条件  pageSize 和   currentPage  都需要调用 getAccountListByPage 函数请求数据
+
+            注意：所有之前需要刷新页面的地方 都需要改为调用此函数
+
+        3）后端- 接收请求，接收分页参数  pageSize 和   currentPage
+        4）后端- 构造sql语句，查询所有数据，计算出数据总条数
+            let sqlStr = `select * from account order by ctime desc`
+            const total = data.length;  // 数据总条数
+
+        5）后端- 构造分页sql
+            sqlStr += ` limit (currentPage - 1) * pageSize, pageSize`;
+
+        6) 后端- 返回两个数据给前端
+                total： 数据总条数
+                data:  每个页码对应的数据
+
+        7）前端- 接收后端返回数据，赋值给对应的变量
+
+    D 登录功能实现
+        a) 验证用户是身份（用户名或密码是否正确）
+            1）前端- 收集用户名和密码，发送给后端
+            2）后端- 接收请求，接收用户名和密码，检查用户名和密码是否存在
+               根据结果判断：
+                成功：返回成功的信息
+                失败：返回失败的信息
+            3）前端- 接收后端返回的信息，判断
+                成功：弹出登录成功 跳转到后端首页
+                失败：弹出登录失败
+
+        b) 验证用户的登录状态
+            1)  后端- 在登录成功的路由中，使用jwt生成token，把token返回给前端
+            2） 前端- 接收后端数据，接收到token，把token存在浏览器端。
+            3)  前端- 在入口文件写路由守卫，在路由守卫中从本地存储获取token，判断
+                如果没有：
+                    去首页：直接放行
+                    去其他页面： 直接跳转到首页
+
+                如果有：
+                    直接放行
+
+        c) 退出登录
+            1） 前端- 点击退出登录按钮，清除token，弹出提示，跳转到登录页面。
+
+DAY05:
+    1) 退出登录
+        1） 前端- 点击退出登录按钮，清除token，弹出提示，跳转到登录页面。
+
+    2) 所有接口的token校验
+        1）后端- 安装 express-jwt模块 这个模块主要用于校验 token
+            cnpm i express-jwt -S
+
+        2) 后端- 使用express-jwt模块校验token
+                const secretKey = 'itsource';
+
+                // 使用中间件验证token合法性
+                router.use(expressJwt ({
+                    secret:  secretKey 
+                }).unless({
+                    path: ['/login/checklogin']  // 不需要验证token的地址
+                }))
+
+                // 拦截器
+                router.use(function (err, req, res, next) {
+                    // 如果用户的请求 没有携带token 那么错误类型是 UnauthorizedError
+                    if (err.name === 'UnauthorizedError') {   
+                        // 如果前端请求不带token 返回错误
+                        res.status(401).send('无效的token...');
+                    }
+                })
+
+        3) 前端- 每次请求 在axios的拦截器中 给请求头设置token
+            // 设置axios的请求拦截器（在发送所有请求之间 给请求头统一携带token）
+            axios.interceptors.request.use(config => {
+                // 获取浏览器中的token
+                const token = window.localStorage.getItem('t_k_1130_h5-@&1265');
+                // 设置请求头 携带token
+                config.headers.authorization = `Bearer ${token}`;
+                return config;
+            })
+    3）显示当前登录用户
+        1）前端- 在登录的头部组件的生命周期 created 中，发送请求
+        2）后端- 接收请求，从req.user中获取当前登录用户名，返回给前端
+        3）前端- 接收用户名，渲染
+   
+    4）修改密码功能实现
+        a) 旧密码是否正确的验证
+            i)  前端- 在旧密码的自定义验证函数中，把旧密码发送给后端
+            ii) 后端- 接收旧密码，把旧密码和当前登录的密码对比是否一致，返回结果
+            iii) 前端- 接收后端返回结果，根据结果正确或错误 作出对应的提示
+
+        b) 保存新密码
+            i)   前端-  发送新密码给后端
+            ii)  后端- 接收新密码 从req.user取出当前登录用户的id
+            iii) 后端- 以id为条件 写sql语句，把原来的密码改为新密码，根据操作结果判断，
+                  成功： 返回成功信息
+                  失败： 返回失败信息
+            iiii) 前端- 接收后端返回的信息，判断
+                    成功： 清除token 弹出成功提示 跳转登录页面
+                    失败:  弹出失败提示
+
+    5）echart的安装
+        A 安装echarts
+            cnpm i echarts -S
+
+        B 在入口文件mian.js中 引入echarts 且 挂载Vue的原型上
+            import echarts from 'echarts'
+            Vue.prototype.echarts = echarts
+
+        C 那么在所有组件中 可以通过 this.echarts来使用echarts
+
+    6）echarts的使用
+        A) 准备一个dom容器 具备宽高（高是必备的）
+            <div id="box" style="height: 400px;"></div>
+
+        B) 在vue的 mounted钩子函数 中，初始化dom
+            const myChart = this.echarts.init( document.getElementById('box') );
+
+        C) 写配置
+            const option = {
+                // 核心配置 （复制 =》 粘贴 =》 改）
+            }
+    
+        D) 使用配置 生成报表
+            myChart.setOption( option )
+
+DAY06:
+    
+
+    
+

@@ -1,0 +1,20 @@
+1 一台什么都没有的电脑
+    1）安装node
+
+    2）全局安装vue-cli
+        cnpm i -g @vue/cli
+
+    3) 搭建项目
+        vue create 项目名 （第一次创建 自动安装好了node_modules）
+
+    4)  进入项目 启动项目 
+        npm run serve   （老项目vue-cli2.x :   npm run dev）
+
+    
+2 已经在开发的项目
+    1) 进入项目目录（和 package.json一个目录）安装依赖
+        cnpm i
+
+    2) 启动项目
+        npm run serve
+        

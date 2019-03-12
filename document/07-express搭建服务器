@@ -1,0 +1,32 @@
+// express搭建后端工程目录
+    1） 检测你的电脑有没有express
+        express --version 
+
+        如果有： 直接使用
+        否则需要安装：  cnpm i express-generator -g
+
+    2) 创建项目
+        express -e 项目名
+
+    3） 进入项目目录 安装依赖
+        cnpm i
+
+    4) 改端口 改启动方式 
+        // 监听端口
+        app.listen(666, () => {
+            console.log('服务器启动成功，地址是:http://127.0.0.1:666')
+        })
+        // 改掉启动方式
+        "scripts": {
+            "start": "nodemon app"
+        },
+
+        备注：一定要有nodemon 检测
+            nodemon -v
+            如果没有 需要安装： cnpm i nodemon -g
+
+    5） 启动项目
+        npm start
+
+    
+

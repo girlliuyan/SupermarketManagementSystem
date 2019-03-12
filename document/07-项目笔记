@@ -1,0 +1,72 @@
+项目目标：
+    1）熟练掌握vue+elementui组件化的开发方式（*****）
+
+DAY01:
+    A 你负责vue+elementui技术体系的项目
+        1） 装环境
+            a) 工具类
+                vscode
+                浏览器： chrome 火狐
+
+            b) 软件类
+                node：   10以后的版本 （自带npm ）
+                安装cnpm
+
+        2） 安装vue-cli脚手架
+            cnpm i -g @vue/cli
+
+        
+        3) 创建项目
+            vue create 项目名     // 自动安装node_modules
+
+        4） 启动项目
+            npm run serve
+
+
+    B 如果已经有项目的工程目录模板
+        1) cd 进入项目目录  安装所有依赖 
+            cnpm i
+
+        2) 启动项目
+            npm run serve
+            
+
+    C 项目目录划分 （主要开发目录是src）
+        main.js  // 入口文件 需要在这个项目引入App.vue 和 路由 挂载dom渲染
+                 // 如果需要全局引入的 整个项目都能使用的资源 那么在这个文件引入
+
+        app.vue  // 顶级组件 要有路由出口（主要是一级路由）
+
+        router.js // 整个项目所有的路由 主要是定义路径path 和 组件component的一一对应关系
+
+        assets:    // 所有静态资源 css fonts js img
+        components: // 公用的小组件
+        view:       // 页面级别的组件
+
+    D 项目集成element-ui
+        a) 安装依赖
+           cnpm i element-ui -S
+
+        b) 在入口文件 main.js 引入
+            import ElementUI from 'element-ui';  // js组件
+            import 'element-ui/lib/theme-chalk/index.css'; // 样式
+
+        c) 在main.js中使用
+            Vue.use(ElementUI);
+
+    E 项目集成iconfont图标
+        1） 找到官网 搜索你想要的图标 下载代码
+ 
+        2） 复制字体文件到fonts文件夹 (5个) 复制css文件 到css文件夹 
+            说明：需要修改css文件中引用字体文件的路径
+
+        3） 在项目入口文件 main.js 引入 iconfont.css
+            
+	
+	F 登录组件实现
+        1）找到官网 找到表单组件
+        2）复制看效果（一定要先复制全 =》template中内容 和 script中内容 ）
+        3）修改
+
+        注意：
+    G 表单验证

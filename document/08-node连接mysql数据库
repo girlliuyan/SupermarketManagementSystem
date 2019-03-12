@@ -1,0 +1,19 @@
+1 下载mysql模块
+    cnpm i mysql -S
+
+2 使用mysql模块 创建连接对象
+    const connection = mysql.createConnection({
+        host: 'localhost' // 数据库地址
+        user: ''  // 账号
+        password: '' // 密码
+        database: '' // 数据库名
+        port: '3306'  // 端口号 默认就是 所以可以不写
+    })
+
+3 执行连接
+    connection.connect(() => {
+        console.log('数据库连接成功')
+    })
+
+4 暴露模块
+    module.exports = connection;

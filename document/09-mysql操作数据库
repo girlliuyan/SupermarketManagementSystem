@@ -1,0 +1,42 @@
+// 引入mysql连接对象模块
+const connection = require('./conn')
+
+1 增加数据
+    a) 写sql语句
+        const sqlStr = 'insert into 表名(字段列表) value(值列表)'
+
+    b) 执行sql
+        connection.query(sqlStr, (err, data) => {
+            if (err) throw err;
+            // data 就是操作结果
+        })
+
+2 删除数据
+    a) 写sql语句
+        const sqlStr = 'delete from 表名 where 条件'
+
+    b) 执行sql
+        connection.query(sqlStr, (err, data) => {
+            if (err) throw err;
+            // data 就是操作结果
+        })
+
+3 修改数据
+    a) 写sql语句
+        const sqlStr = 'update 表名 set 数据库字段名1=新的值, 数据库字段名2=新的值 where 条件'
+
+    b) 执行sql
+        connection.query(sqlStr, (err, data) => {
+            if (err) throw err;
+            // data 就是操作结果
+        })
+
+4 查询数据
+    a) 写sql语句
+        const sqlStr = 'select * from 表名 where 条件'
+
+    b) 执行sql
+        connection.query(sqlStr, (err, data) => {
+            if (err) throw err;
+            // data 就是操作结果
+        })
